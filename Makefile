@@ -1,9 +1,11 @@
 SRC := $(wildcard *.c)
+OBJS := $(SRC:.c=.o)
 C := gcc
-TARGET := OPT.exe
+TARGET := OPT.dll
 
-$(TARGET) : $(SRC)
-	$(C) -o $@ $^
-
+$(TARGET) : $(OBJS)
+	$(C) -shared -o $@ $^ -Wl,--out-implib,libmessage.a
+*.o : *.c
+	$(C) -v -c -DBUILD_DLL $< -o $@
 clean:
-	rm -rf $(TARGET)
+	rm -rf $(TARGET) $(OBJS)
