@@ -57,7 +57,7 @@ void parse_args(OPT *opt)
             }
             p->name = opt->argv[i++];
             
-            p->args = NULL;
+            p->args = NOARGS;
             p->num_args = 0;
             while(i < opt->argc && !array_includes((void **)opt->args, &opt->num_args, opt->argv[i], compare_strings))
             {
@@ -76,8 +76,6 @@ param *get_args(const OPT *opt, char *arg)
     {
         if (strcmp(opt->params[i]->name, arg) == 0)
         {
-            if(opt->params[i]->num_args == 0)
-                return NULL;
             return opt->params[i];
         }
     }
