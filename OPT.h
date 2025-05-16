@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "utils.h"
+#define NOARGS 1
 
 typedef struct param
 {
